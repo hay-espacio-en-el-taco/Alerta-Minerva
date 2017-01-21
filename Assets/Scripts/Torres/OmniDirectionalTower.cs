@@ -67,6 +67,8 @@ public class OmniDirectionalTower : MonoBehaviour {
     {
         if (this.currentWave != null)
         {
+            this.currentWave.transform.position = this.spawnPoint.transform.position;// Sigue al objeto en caso de que vaya cayendo
+
             if (Mathf.Abs(this.currentWave.transform.localScale.x) > this.maxScale)
             {// Tamaño máximo alcanzado
                 this.currentWave.transform.localScale = this.originalScale;
@@ -79,8 +81,7 @@ public class OmniDirectionalTower : MonoBehaviour {
         else
         {
             this.currentWave = Instantiate(attackObject.gameObject) as GameObject;
-            this.currentWave.transform.parent = this.spawnPoint.transform;
-            this.currentWave.transform.localPosition = Vector3.zero;
+            this.currentWave.transform.position = this.spawnPoint.transform.position;
             this.originalScale = this.currentWave.transform.localScale;
         }
     }
