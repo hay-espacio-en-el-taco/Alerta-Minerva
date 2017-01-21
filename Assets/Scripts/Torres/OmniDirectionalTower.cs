@@ -26,6 +26,32 @@ public class OmniDirectionalTower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit hitInfo = new RaycastHit();
+            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+            if (hit)
+            {
+                //Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+                if (hitInfo.transform.gameObject.name == this.transform.gameObject.name)
+                {
+                    
+                    _isAttacking = true;
+                }
+                else
+                {
+                    _isAttacking = false;
+                }
+            }
+            else
+            {
+                _isAttacking = false;
+            }
+        }
+        else
+        {
+            _isAttacking = false;
+        }
 		if (isAttacking)
         {
             Attack();
