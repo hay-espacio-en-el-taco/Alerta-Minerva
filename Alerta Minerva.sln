@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{69ADD811-FAD6-E7F9-DECB-9E9C8535BCEF}") = "Alerta Minerva", "Assembly-CSharp.csproj", "{E6669E5F-51D8-1111-5BB1-7FAB437F7CBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6669E5F-51D8-1111-5BB1-7FAB437F7CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6669E5F-51D8-1111-5BB1-7FAB437F7CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6669E5F-51D8-1111-5BB1-7FAB437F7CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6669E5F-51D8-1111-5BB1-7FAB437F7CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
