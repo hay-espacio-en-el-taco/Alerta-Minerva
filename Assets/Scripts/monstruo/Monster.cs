@@ -38,14 +38,14 @@ public class Monster : MonoBehaviour {
         tags.Add("casa1");
         System.Random rnd = new System.Random();
         int rndTag = rnd.Next(0, 4);
-        Debug.Log(tags[rndTag]);
+        //Debug.Log(tags[rndTag]);
         go = GameObject.FindGameObjectWithTag(tags[rndTag]);
         target = go.transform;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        Debug.Log(target);
+        //Debug.Log(target);
         if (go == null)
         {
             System.Random rnd = new System.Random();
@@ -58,7 +58,7 @@ public class Monster : MonoBehaviour {
             target = go.transform;
             float distance = Vector3.Distance(target.transform.position, transform.position);
 
-            Debug.Log(distance);
+            //Debug.Log(distance);
             if (distance > 0)
             {
                 Debug.DrawLine(target.position, myTransform.position, Color.red);
