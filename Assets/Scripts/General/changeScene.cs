@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour {
 	/// <summary>
@@ -7,6 +8,6 @@ public class changeScene : MonoBehaviour {
 	/// </summary>
 	/// <param name="nameScene">name of the scena that you want to go.</param>
 	public void goToScene(string nameScene){		
-		Application.LoadLevel(nameScene);		
+		SceneManager.LoadScene(nameScene);		
 	}
 }
