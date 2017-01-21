@@ -6,6 +6,7 @@ public class BuildingsHealth : MonoBehaviour {
     /// <summary>
     /// Vida total del edificio
     /// </summary>
+    [SerializeField]
     private float health = 100;
 
     public float Health
@@ -13,6 +14,15 @@ public class BuildingsHealth : MonoBehaviour {
         get
         {
             return this.Health;
+        }
+        private set
+        {
+            this.health = value;
+
+            if (this.health < 0)
+            {
+                this.health = 0;
+            }
         }
     }
 
