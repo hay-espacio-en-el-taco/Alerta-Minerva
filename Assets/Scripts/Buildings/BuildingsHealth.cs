@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BuildingsHealth : MonoBehaviour {
+
+
+    private List<Monster> monsterTouchingThisBuilding;
 
     /// <summary>
     /// Vida total del edificio
@@ -13,39 +17,59 @@ public class BuildingsHealth : MonoBehaviour {
     {
         get
         {
-            return this.Health;
+            return this.health;
         }
         private set
         {
             this.health = value;
 
-            if (this.health < 0)
+            if (this.health <= 0)
             {
-                this.health = 0;
+                Object.Destroy(this.gameObject);
             }
         }
     }
 
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnTriggerEnter(Collider other)
+    void Start()
     {
-        Monster monster = other.GetComponent<Monster>();
+        monsterTouchingThisBuilding = new List<Monster>();
+    }
 
+
+    void Update()
+    {
+        if (monsterTouchingThisBuilding.Count > 0)
+        {
+            float totalDamage = 0;
+            foreach (Monster monster in monsterTouchingThisBuilding)
+            {
+                totalDamage += monster.Damage;
+            }
+
+            this.Health -= totalDamage * Time.deltaTime;
+        }
+
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Monster monster = other.gameObject.GetComponent<Monster>();
         if (monster == null)
         {
             return;
         }
 
-        this.health -= monster.Damage * Time.deltaTime;
+        monsterTouchingThisBuilding.Add(monster);
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        Monster monster = other.gameObject.GetComponent<Monster>();
+        if (monster == null)
+        {
+            return;
+        }
+
+        monsterTouchingThisBuilding.Remove(monster);
     }
 }
