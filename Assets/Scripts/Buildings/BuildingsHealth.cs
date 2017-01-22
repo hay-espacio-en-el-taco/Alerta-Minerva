@@ -25,6 +25,7 @@ public class BuildingsHealth : MonoBehaviour {
 
             if (this.health <= 0)
             {
+                monsterTouchingThisBuilding[0].DestroyBuildingSound();
                 Object.Destroy(this.gameObject);
             }
         }

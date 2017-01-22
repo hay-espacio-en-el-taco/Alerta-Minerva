@@ -35,8 +35,7 @@ public class spawnManager : MonoBehaviour {
 			int monsterTypeIndex = Random.Range (0, monsterTypes.Length);
 
 			// Create an instance of the mounter prefab at the randomly selected spawn point's position and rotation.
-			Instantiate (monsterTypes[monsterTypeIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-
+			Instantiate (monsterTypes[monsterTypeIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);           
 			return true;
 		}
 		catch{ return false; }
