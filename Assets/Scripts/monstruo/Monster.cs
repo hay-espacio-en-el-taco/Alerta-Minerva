@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour {
     public int moveSpeed = 30;
     public int rotationSpeed = 5;
 
+    public AudioSource DestroyBuildingAudioSource;
+
     List<string> tags = new List<string>();
 
     private Transform myTransform;
@@ -23,9 +25,15 @@ public class Monster : MonoBehaviour {
 
 
 
+
     void Awake()
     {
         myTransform = transform;
+    }
+
+    public void DestroyBuildingSound()
+    {
+        DestroyBuildingAudioSource.Play();
     }
 
     // Use this for initialization
