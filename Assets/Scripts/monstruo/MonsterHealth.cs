@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterHealth : MonoBehaviour {
 
     public const int WAVE_LAYER = 9;
+    public const float MIN_SCALE = 3f;
 
     [SerializeField]
     private float _health = 100f;
@@ -15,12 +16,12 @@ public class MonsterHealth : MonoBehaviour {
         private set
         {
             this._health = value;
+            Vector3 currentScale = transform.localScale;
             if (_health <= 0)
             {
                 GameObject.Destroy(this.gameObject);
-            } else if (_health > 20)
+            } else if (currentScale.x > MIN_SCALE)
             {
-                Vector3 currentScale = transform.localScale;
                 Vector3 newScale = new Vector3(transform.localScale.x * (_health / 100), transform.localScale.y * (_health / 100), transform.localScale.z * (_health / 100));
                 transform.localScale = new Vector3(newScale.x, newScale.y, newScale.z);
             }
