@@ -5,26 +5,29 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
-    public static double score = 20;
-    public Text labelScore = null;
-    public int pointPerSecond = 1;
-
-    // Use this for initialization
-    void Start() {
-        
-    }
-
-    // Update is called once per frame
+    static double score = 0; 
+    public Text labelScore = null; 
+    public int pointPerSecond = 1; 
+      
     void Update() {
-        addPoints(Time.deltaTime * pointPerSecond);
-        labelScore.text = changeText();
+
+        addPoints(Time.deltaTime * pointPerSecond); // add percet of points by time
+        labelScore.text = getTemplateUpdated(); 
     }
 
-    string changeText()
+    /// <summary>
+    /// Template for text Score
+    /// </summary>
+    /// <returns>Temple String of Score</returns>
+    string getTemplateUpdated()
     {
         return "ÌScore-" + ((int)score).ToString() + "Í";
     }
 
+    /// <summary>
+    /// Method to add Points to the Score this must call by whatever action to add points
+    /// </summary>
+    /// <param name="points"></param>
     public static void addPoints(float points) {
         score += points;
     }
