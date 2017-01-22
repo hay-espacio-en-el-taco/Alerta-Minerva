@@ -7,6 +7,7 @@ public class OmniDirectionalTower : MonoBehaviour {
     public GameObject spawnPoint;
     public float maxScale = 2;
     public float Speed = 1;
+    public AudioSource waveSound;
 
     private GameObject currentWave = null;
 
@@ -43,6 +44,11 @@ public class OmniDirectionalTower : MonoBehaviour {
         {
             Attack();
         }
+        //else
+        //{
+        //    if (waveSound.isPlaying)
+        //        waveSound.Stop();
+        //}
     }
 
 
@@ -54,6 +60,7 @@ public class OmniDirectionalTower : MonoBehaviour {
 
             if (Mathf.Abs(this.currentWave.transform.localScale.x) > this.maxScale)
             {// Tamaño máximo alcanzado
+                waveSound.Stop();
                 this.ShouldAttack = false;
             }
             else
@@ -63,6 +70,7 @@ public class OmniDirectionalTower : MonoBehaviour {
         }
         else
         {// Instancia el ataque (objeto)
+            waveSound.Play();
             this.currentWave = Instantiate(attackObject.gameObject) as GameObject;
             this.currentWave.transform.position = this.spawnPoint.transform.position;
         }

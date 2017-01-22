@@ -6,6 +6,7 @@ public class BuildingsHealth : MonoBehaviour {
 
 
     private List<Monster> monsterTouchingThisBuilding;
+    public AudioSource destroySound;
 
     /// <summary>
     /// Vida total del edificio
@@ -24,10 +25,15 @@ public class BuildingsHealth : MonoBehaviour {
             this.health = value;
 
             if (this.health <= 0)
-            {
+            {                 
                 Object.Destroy(this.gameObject);
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        destroySound.Play();
     }
 
     void Start()
