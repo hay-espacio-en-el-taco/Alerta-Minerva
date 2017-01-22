@@ -2,15 +2,19 @@
 using System.Collections;
 
 public class closeApp : MonoBehaviour {
-	/// <summary>
-	/// Quit this instance.
-	/// </summary>
-	public void Quit()
+    /// <summary>
+    /// Quit this instance.
+    /// </summary>
+    /// 
+    public AudioSource ClickAudioSource;
+
+    public void Quit()
 	{
-		//If we are running in a standalone build of the game
-		#if UNITY_STANDALONE
-		//Quit the application
-		Application.Quit();
+        ClickAudioSource.Play();
+        //If we are running in a standalone build of the game
+        #if UNITY_STANDALONE
+        //Quit the application
+        Application.Quit();
 		#endif
 		
 		//If we are running in the editor
