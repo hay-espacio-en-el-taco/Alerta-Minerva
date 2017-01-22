@@ -12,10 +12,10 @@ public class Monster : MonoBehaviour {
     public Transform target;
     public int moveSpeed = 30;
     public int rotationSpeed = 5;
+    public List<string> tags = new List<string>();
+    private System.Random rnd = new System.Random();
 
     public AudioSource DestroyBuildingAudioSource;
-
-    List<string> tags = new List<string>();
 
     private Transform myTransform;
 
@@ -40,23 +40,26 @@ public class Monster : MonoBehaviour {
     void Start()
     {
         rg = GetComponent<Rigidbody>();
-        tags.Add("edificio1");
-        tags.Add("edificio2");
-        tags.Add("edificio3");
-        tags.Add("casa1");
-        System.Random rnd = new System.Random();
-        int rndTag = rnd.Next(0, 4);
-        go = GameObject.FindGameObjectWithTag(tags[rndTag]);
-        target = go.transform;
+        target = getRandomObjective().transform;
+    }
+
+    int getRandomTag()
+    {
+        return tags.Count > 0 ? rnd.Next(0, tags.Count - 1) : 0;
+    }
+
+    GameObject getRandomObjective()
+    {
+        GameObject[] gmArray = GameObject.FindGameObjectsWithTag(tags[getRandomTag()]);
+        int num = rnd.Next(0, gmArray.Length - 1);
+        return gmArray[num];
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         if (go == null)
         {
-            System.Random rnd = new System.Random();
-            int rndTag = rnd.Next(0, 4);
-            go = GameObject.FindGameObjectWithTag(tags[rndTag]);
+            go = getRandomObjective();
         }
         
         if(go != null)
