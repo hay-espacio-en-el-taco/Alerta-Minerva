@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckLost : MonoBehaviour {
 
@@ -15,7 +16,7 @@ public class CheckLost : MonoBehaviour {
         int towersLeft = FindGameObjectsWithLayer(11);
         if (towersLeft == 0 || buldingsLeft == 0)
         {
-            Debug.Log("You're Dead");
+			SceneManager.LoadScene("Game Over");
         }
     }
 
