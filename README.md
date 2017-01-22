@@ -22,4 +22,4 @@ The game is over when the Towers or your City Buldings are gone.
 
 ## Screens
 
-![screenshot](img\City.png)
+![screenshot](img/City.png)
