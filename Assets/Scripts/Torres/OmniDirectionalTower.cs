@@ -9,67 +9,52 @@ public class OmniDirectionalTower : MonoBehaviour {
     public float Speed = 1;
 
     private GameObject currentWave = null;
-    private Vector3 originalScale;
 
-    [SerializeField]
     private bool _isAttacking = false;
 
-    public bool isAttacking
-    {
-        get { return this._isAttacking; }
-    }
+    [SerializeField]
+    private bool _shouldAttack = false;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetMouseButton(0))
+    public bool ShouldAttack
+    {
+        get { return this.ShouldAttack; }
+        set
         {
-            RaycastHit hitInfo = new RaycastHit();
-            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
-            if (hit)
+            if (this._shouldAttack != value)
             {
-                //Debug.Log("Hit " + hitInfo.transform.gameObject.name);
-                if (hitInfo.transform.gameObject.name == this.transform.gameObject.name)
+                this._shouldAttack = value;
+
+                if (this._shouldAttack)
                 {
-                    
-                    _isAttacking = true;
+                    this._isAttacking = true;
                 }
                 else
                 {
-                    _isAttacking = false;
+                    cleanUp();
                 }
             }
-            else
-            {
-                _isAttacking = false;
-            }
         }
-        else
-        {
-            _isAttacking = false;
-        }
-		if (isAttacking)
+    }
+
+
+    void FixedUpdate()
+    {
+        if (this._isAttacking)
         {
             Attack();
         }
-        else
-        {
-            cleanUp(this.spawnPoint.transform);
-        }
-	}
+    }
 
 
     private void Attack()
     {
         if (this.currentWave != null)
         {
+            this.currentWave.transform.position = this.spawnPoint.transform.position;// Sigue al objeto en caso de que vaya cayendo
+
             if (Mathf.Abs(this.currentWave.transform.localScale.x) > this.maxScale)
             {// Tamaño máximo alcanzado
-                this.currentWave.transform.localScale = this.originalScale;
+                this.ShouldAttack = false;
             }
             else
             {// Sigue creciendo
@@ -77,16 +62,15 @@ public class OmniDirectionalTower : MonoBehaviour {
             }
         }
         else
-        {
+        {// Instancia el ataque (objeto)
             this.currentWave = Instantiate(attackObject.gameObject) as GameObject;
-            this.currentWave.transform.parent = this.spawnPoint.transform;
-            this.currentWave.transform.localPosition = Vector3.zero;
-            this.originalScale = this.currentWave.transform.localScale;
+            this.currentWave.transform.position = this.spawnPoint.transform.position;
         }
     }
 
-    private void cleanUp(Transform parent)
+    private void cleanUp()
     {
+        this._isAttacking = false;
         Object.Destroy(this.currentWave);
         this.currentWave = null;
     }
