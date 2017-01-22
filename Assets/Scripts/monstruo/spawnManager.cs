@@ -36,7 +36,7 @@ public class spawnManager : MonoBehaviour {
 
 			// Create an instance of the mounter prefab at the randomly selected spawn point's position and rotation.
 			Instantiate (monsterTypes[monsterTypeIndex], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-
+            Score.addPoints(20);
 			return true;
 		}
 		catch{ return false; }
