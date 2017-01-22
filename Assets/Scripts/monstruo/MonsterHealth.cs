@@ -18,6 +18,7 @@ public class MonsterHealth : MonoBehaviour {
             if (_health <= 0)
             {
                 GameObject.Destroy(this.gameObject);
+                Score.addPoints(100);
             }
         }
     }

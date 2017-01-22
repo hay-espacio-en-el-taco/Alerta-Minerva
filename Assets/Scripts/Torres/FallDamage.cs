@@ -18,7 +18,9 @@ public class FallDamage : MonoBehaviour {
         if(col.gameObject.name == "Suelo")
         {
 			if (col.relativeVelocity.magnitude > 10) {
-            	Object.Destroy(this.gameObject);
+                OmniDirectionalTower currentTower = this.GetComponent<OmniDirectionalTower>();
+                if(currentTower != null) currentTower.cleanUp();
+                Object.Destroy(this.gameObject);
     		}
         }
     }
