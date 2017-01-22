@@ -18,6 +18,12 @@ public class MonsterHealth : MonoBehaviour {
             if (_health <= 0)
             {
                 GameObject.Destroy(this.gameObject);
+            } else if (_health > 20)
+            {
+                Vector3 currentScale = transform.localScale;
+                Vector3 newScale = new Vector3(transform.localScale.x * (_health / 100),0,0);
+                Debug.Log(newScale.x);
+                transform.localScale = new Vector3(newScale.x, newScale.x, newScale.x);
             }
         }
     }
