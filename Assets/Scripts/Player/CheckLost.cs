@@ -16,7 +16,10 @@ public class CheckLost : MonoBehaviour {
         int towersLeft = FindGameObjectsWithLayer(11);
         if (towersLeft == 0 || buldingsLeft == 0)
         {
-			SceneManager.LoadScene("Game Over");
+            //SceneManager.LoadScene("Game Over");
+            GameObject GameOverScreen = Resources.Load("GameOver") as GameObject;           
+            GameObject GameOverScreeninstance = Instantiate(GameOverScreen) as GameObject;
+            GameOverScreeninstance.transform.SetParent(GameObject.Find("Main Camera").transform, false);
         }
     }
 
