@@ -44,11 +44,7 @@ public class OmniDirectionalTower : MonoBehaviour {
         {
             Attack();
         }
-        //else
-        //{
-        //    if (waveSound.isPlaying)
-        //        waveSound.Stop();
-        //}
+       
     }
 
 
@@ -76,7 +72,7 @@ public class OmniDirectionalTower : MonoBehaviour {
         }
     }
 
-    private void cleanUp()
+    public void cleanUp()
     {
         this._isAttacking = false;
         Object.Destroy(this.currentWave);
