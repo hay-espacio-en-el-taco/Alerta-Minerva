@@ -33,6 +33,11 @@ public class Monster : MonoBehaviour {
 
     public void DestroyBuildingSound()
     {
+        if (DestroyBuildingAudioSource == null)
+        {
+            return;
+        }
+
         DestroyBuildingAudioSource.Play();
     }
 
@@ -40,7 +45,6 @@ public class Monster : MonoBehaviour {
     void Start()
     {
         rg = GetComponent<Rigidbody>();
-        target = getRandomObjective().transform;
     }
 
     int getRandomTag()
@@ -51,8 +55,14 @@ public class Monster : MonoBehaviour {
     GameObject getRandomObjective()
     {
         GameObject[] gmArray = GameObject.FindGameObjectsWithTag(tags[getRandomTag()]);
-        int num = rnd.Next(0, gmArray.Length - 1);
-        return gmArray[num];
+
+        if (gmArray.Length > 0)
+        {
+            int num = rnd.Next(0, gmArray.Length - 1);
+            return gmArray[num];
+        }
+
+        return null;
     }
 	
 	// Update is called once per frame
